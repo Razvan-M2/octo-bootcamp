@@ -1,17 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="input-home">
+    <MainInput ref="mainInput" />
+  </div>
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import MainInput from './components/MainInput.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    MainInput,
+  },
+  created() {
+    window.addEventListener('keydown', (e) => {
+      // console.log(`window keypress`);
+      this.$refs.mainInput.handleInput(e.key);
+    });
+  },
+  data() {
+    return {
+      canInput: false,
+    };
+  },
+};
 </script>
 
 <style>
@@ -22,5 +36,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.input-home {
+  font-size: 2rem;
 }
 </style>
